@@ -24,6 +24,7 @@ MAX_IMAGES = 150
 
 parser = argparse.ArgumentParser(description='Launch Gradio app')
 parser.add_argument('--port', type=int, default=8082, help='Port number to run the server on')
+parser.add_argument('--listen', type=str, default='127.0.0.1', help='IP address to listen on')
 args = parser.parse_args()
 
 def load_captioning(uploaded_files, concept_sentence):

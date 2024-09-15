@@ -25,6 +25,7 @@ dependencies = [
     "optimum-quanto>=0.2.4",
     "oyaml>=1.0",
     "peft>=0.12.0",
+    "pip>=24.2",
     "prodigyopt>=1.0",
     "pydantic>=2.9.1",
     "python-dotenv>=1.0.1",
