@@ -2,7 +2,7 @@ import os
 from huggingface_hub import whoami    
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 import sys
-
+import argparse 
 # Add the current working directory to the Python path
 sys.path.insert(0, os.getcwd())
 
@@ -21,6 +21,10 @@ sys.path.insert(0, "ai-toolkit")
 from toolkit.job import get_job
 
 MAX_IMAGES = 150
+
+parser = argparse.ArgumentParser(description='Launch Gradio app')
+parser.add_argument('--port', type=int, default=8082, help='Port number to run the server on')
+args = parser.parse_args()
 
 def load_captioning(uploaded_files, concept_sentence):
     uploaded_images = [file for file in uploaded_files if not file.endswith('.txt')]
@@ -411,4 +415,4 @@ with gr.Blocks(theme=theme, css=css) as demo:
     do_captioning.click(fn=run_captioning, inputs=[images, concept_sentence] + caption_list, outputs=caption_list)
 
 if __name__ == "__main__":
-    demo.launch(share=True, show_error=True)
+    demo.launch(share=True, show_error=True, server_port=args.port)
